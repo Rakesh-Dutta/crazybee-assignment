@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  padding: 20px;
 }
 
 .App-logo {
@@ -30,4 +30,36 @@
   to {
     transform: rotate(360deg);
   }
+}
+.album {
+  display: -webkit-inline-box;
+  border-radius: 5px;
+  padding: 10px;
+  border-style: groove;
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+.alb-ind {
+  display: -webkit-inline-box;
+  border-radius: 5px;
+  padding: 5px;
+}
+.element-title {
+  width: 175px;
+  overflow-wrap: break-word;
+  font-size: smaller;
+}
+.album-element {
+  text-align: center;
+}
+.album-header-body {
+  display: flex;
+  font-size: smaller;
+}
+.mrg-right {
+  margin-right: 20px;
+}
+.album-header {
+  display: inline;
+  padding: 20px;
 }

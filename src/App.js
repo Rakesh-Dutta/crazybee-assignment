@@ -1,26 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import IndividualUser from "./IndividualUser";
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      albums: []
+    };
+  }
+  componentWillMount() {
+    fetch("https://jsonplaceholder.typicode.com/albums")
+      .then(res => res.json())
+      .then(result => {
+        this.setState({
+          isLoaded: true,
+          albums: result
+        });
+      });
+  }
+  render() {
+    let result = this.state.albums.map((album, index) => {
+      return (
+        <div className="album">
+          <div className="album-header">
+            <div>{album.title}</div>
+            <div className="album-header-body">
+              <div className="mrg-right"> id: {album.id} </div>
+              <span> userId: {album.userId} </span>
+            </div>
+            <hr />
+          </div>
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          <IndividualUser key={index} index={index} album={album} />
+        </div>
+      );
+    });
+    return (
+      <div className="App">
+        <b1>Hello Crazybee..... </b1>
+        <br />
+        <br />
+        {result}
+      </div>
+    );
+  }
 }
 
 export default App;
