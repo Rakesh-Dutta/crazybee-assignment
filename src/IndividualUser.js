@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import ScrollMenu from "react-horizontal-scrolling-menu";
 export default class IndividualUser extends React.Component {
   constructor(props) {
     super(props);
@@ -9,19 +10,27 @@ export default class IndividualUser extends React.Component {
       album: []
     };
   }
-  componentWillMount() {
-    fetch(
+
+  async componentDidMount() {
+    const response = await fetch(
       `https://jsonplaceholder.typicode.com/photos?albumId=${
         this.props.album.id
       }`
-    )
-      .then(res => res.json())
-      .then(result => {
-        this.setState({
-          isLoaded: true,
-          album: result
-        });
-      });
+    );
+    const json = await response.json();
+    this.setState({ isLoaded: true, album: json });
+    // fetch(
+    //   `https://jsonplaceholder.typicode.com/photos?albumId=${
+    //     this.props.album.id
+    //   }`
+    // )
+    //   .then(res => res.json())
+    //   .then(result => {
+    //     this.setState({
+    //       isLoaded: true,
+    //       album: result
+    //     });
+    //   });
   }
   render() {
     console.log(`IndividualUser${this.props.album.id}`);

@@ -10,15 +10,18 @@ class App extends React.Component {
       albums: []
     };
   }
-  componentWillMount() {
-    fetch("https://jsonplaceholder.typicode.com/albums")
-      .then(res => res.json())
-      .then(result => {
-        this.setState({
-          isLoaded: true,
-          albums: result
-        });
-      });
+  async componentDidMount() {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/albums`);
+    const json = await response.json();
+    this.setState({ isLoaded: true, albums: json });
+    // fetch("https://jsonplaceholder.typicode.com/albums")
+    //   .then(res => res.json())
+    //   .then(result => {
+    //     this.setState({
+    //       isLoaded: true,
+    //       albums: result
+    //     });
+    //   });
   }
   render() {
     let result = this.state.albums.map((album, index) => {
